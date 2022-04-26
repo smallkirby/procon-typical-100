@@ -1,0 +1,21 @@
+name: nirugiri
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Update solve count
+        run: |
+          python3 scripts/update.py
+      - name: update README
+        run: |
+          git config --local user.name 'GitHub Action'
+          git config --local user.email 'skb+github-actions[bot]@users.noreply.github.com'
+          git add .
+          git commit -am "Update total solves"
+          git push
