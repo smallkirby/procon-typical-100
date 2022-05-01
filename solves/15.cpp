@@ -87,11 +87,19 @@ void show2(vector<vector<T>> v)
 
 /******** end of Utility ***************/
 
+const ulong _mod = 1E9 + 7;
+
 int main(void)
 {
   // input
+  ulong N; cin >> N;
 
   // main
-
-  // print
+  for (ulong k = 1; k <= N; ++k) { // this two for-s: O(NlogN) (Harmonic Series)
+    ulong result = 0;
+    for (ulong n = 1; n <= N/k + 1; ++n) {
+      result = (result + nCr((llong)(N - (k-1)*(n-1)), (llong)n, _mod)) % _mod;
+    }
+    cout << result << endl;
+  }
 }
